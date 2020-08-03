@@ -33,30 +33,30 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    
+
     city = input("Enter city name (chicago, new york city, washington): ").lower()
     while city not in CITY_DATA:
         city = input("Enter city name (chicago, new york city, washington): ").lower()
 
-        
-    
-    
+
+
+
     # get user input for month (all, january, february, ... , june)
     month = input("Enter month (all, january, february, ... , june): ").title()
     while month not in months_list:
         month = input("Enter month (all, january, february, ... , june): ").title()
-    
-    
-    
+
+
+
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
-    
-    
+
+
     day = input("Enter day of week (all, monday, tuesday, ... sunday): ").lower()
     while day not in days_list:
         day = input("Enter day of week (all, monday, tuesday, ... sunday): ").lower()
-        
-    
+
+
 
 
     print('-'*40)
@@ -65,7 +65,7 @@ def get_filters():
 
 def load_data(city, month, day):
     """
-    Loads data for the specified city and filters by month and day if applicable.
+    Loads data for the specific city and filters by month and day if applicable.
 
     Args:
         (str) city - name of the city to analyze
@@ -74,22 +74,22 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    
+
     df = pd.read_csv(CITY_DATA[city])
     df["Start Time"] = pd.to_datetime(df["Start Time"])
-    
+
     month = months_list.index(month)
-    
+
     if month != 0:
         condition = df["Start Time"].dt.month == month
         df = df[condition]
-    
-    
+
+
     day = days_list.index(day) - 1  # to make monday=0, all=-1
-    
+
     if day != -1:   # day not equal 'all'
         condition = df["Start Time"].dt.dayofweek == day
-        df = df[condition]     
+        df = df[condition]
 
 
     return df
