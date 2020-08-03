@@ -55,11 +55,6 @@ def get_filters():
     day = input("Enter day of week (all, monday, tuesday, ... sunday): ").lower()
     while day not in days_list:
         day = input("Enter day of week (all, monday, tuesday, ... sunday): ").lower()
-<<<<<<< .merge_file_a17600
-
-
-=======
->>>>>>> .merge_file_a11172
 
 
 
